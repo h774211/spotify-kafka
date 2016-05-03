@@ -38,7 +38,7 @@ if [ ! -z "$ZK_CHROOT" ]; then
     }
 
     # configure kafka
-    sed -r -i "s/(zookeeper.connect)=(.*)/\1=localhost:2181\/$ZK_CHROOT/g" $KAFKA_HOME/config/server.properties
+    sed -r -i "s/(zookeeper.connect)=(.*)/\1=$ZK_HOST\/$ZK_CHROOT/g" $KAFKA_HOME/config/server.properties
 fi
 
 # Allow specification of log retention policies
