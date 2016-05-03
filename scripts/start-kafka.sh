@@ -14,6 +14,13 @@ if [ ! -z "$HELIOS_PORT_kafka" ]; then
     ADVERTISED_PORT=`echo $HELIOS_PORT_kafka | cut -d':' -f 2`
 fi
 
+
+# Set the broker id
+if [ ! -z "$ADVERTISED_BROKER_ID" ]; then
+    echo "broker id: $ADVERTISED_BROKER_ID"
+    sed -r -i "s/#(broker.id)=(.*)/\1=$ADVERTISED_BROKER_ID/g" $KAFKA_HOME/config/server.properties
+fi
+
 # Set the external host and port
 if [ ! -z "$ADVERTISED_HOST" ]; then
     echo "advertised host: $ADVERTISED_HOST"
