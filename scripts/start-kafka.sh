@@ -18,7 +18,7 @@ fi
 # Set the broker id
 if [ ! -z "$ADVERTISED_BROKER_ID" ]; then
     echo "broker id: $ADVERTISED_BROKER_ID"
-    sed -r -i "s/#(broker.id)=(.*)/\1=$ADVERTISED_BROKER_ID/g" $KAFKA_HOME/config/server.properties
+    sed -r -i "s/(broker.id)=(.*)/\1=$ADVERTISED_BROKER_ID/g" $KAFKA_HOME/config/server.properties
 fi
 
 # Set the external host and port

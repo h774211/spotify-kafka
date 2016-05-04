@@ -1,0 +1,38 @@
+kafka0:
+  image: qber/spotify-kafka
+  environment:
+    - ADVERTISED_HOST=218.161.36.193
+    - ADVERTISED_PORT=9092
+    - ADVERTISED_BROKER_ID=0
+  expose:
+    - 2181
+    - 9092
+  ports:
+    - "2181:2181"
+    - "9092:9092"
+
+kafka1:
+  image: qber/spotify-kafka
+  environment:
+    - ADVERTISED_HOST=218.161.36.193
+    - ADVERTISED_PORT=9093
+    - ADVERTISED_BROKER_ID=1
+  expose:
+    - 2181
+    - 9092
+  ports:
+    - "2182:2181"
+    - "9093:9092"
+
+kafka-manager:
+  image: sheepkiller/kafka-manager
+  environment:
+    - APPLICATION_SECRET=letmein
+    - ZK_HOSTS=localhost:2181
+  links:
+    - kafka0
+    - kafka1
+  expose:
+    - 9000
+  ports:
+    - "9000:9000"
